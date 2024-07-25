@@ -4,8 +4,6 @@ on: [push]
 
 jobs:
   Set-Up:
-    outputs:
-      containers: ${{ steps.singularity-containers-artifact.outputs.artifact-id }}
     if: github.event_name == 'pull_request' || github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
@@ -75,8 +73,6 @@ jobs:
       matrix:
         test: ["config", "design", "pipeline"]
         assay: ["atac", "chip-rx", "chip", "rna-rx", "rna", "snp"]
-    env:
-        containers: ${{needs.Set-UP.outputs.containers}}
     steps:
       - uses: actions/checkout@v3
       - name: Cache dependencies
