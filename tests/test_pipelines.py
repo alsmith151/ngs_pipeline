@@ -450,7 +450,7 @@ def test_pipeline(
             "--workflow-profile",
             test_profile_path,
             "--apptainer-prefix",
-            "/tmp",
+            "tmp",
         ],
     )
 
