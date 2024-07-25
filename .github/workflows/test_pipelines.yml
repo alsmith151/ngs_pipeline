@@ -34,7 +34,6 @@ jobs:
           pip install .
       
       - name: Cache singularity
-        if: matrix.test == 'pipeline'
         id: cache-singularity
         uses: actions/cache@v3
         with:
@@ -44,18 +43,17 @@ jobs:
             ${{ runner.os }}-singularity-
       
       - uses: eWaterCycle/setup-apptainer@v2
-        if: matrix.test == 'pipeline'
         with:
           apptainer-version: 1.1.2
 
       - name: Add singularity hub remote
-        if: matrix.test == 'pipeline'
         shell: pwsh
         run: |
           apptainer remote add --no-login SylabsCloud cloud.sylabs.io
           apptainer remote use SylabsCloud
+      
       - name: Pull singularity images
-        if: matrix.test == 'pipeline' && steps.cache-singularity.outputs.cache-hit != 'true'
+        if: steps.cache-singularity.outputs.cache-hit != 'true'
         shell: bash
         run: |
           echo "Pulling singularity images from the remote repository..."
@@ -68,14 +66,6 @@ jobs:
           elif [[ "${{ matrix.assay }}" == "rna-rx" ]]; then
             apptainer pull --force library://asmith151/seqnado/seqnado_report:latest
           fi
-      
-        # save the containers as artifacts for the next task
-
-      - uses: actions/upload-artifact@v4
-        id: singularity-containers-artifact
-        with:
-          path: tmp/
-          name: singularity-images
 
   Test:
     needs: Set-Up
@@ -111,6 +101,7 @@ jobs:
         shell: pwsh
         run: |
           pip install .
+      
       - name: Cache singularity
         if: matrix.test == 'pipeline'
         id: cache-singularity
@@ -120,6 +111,7 @@ jobs:
           key: ${{ runner.os }}-singularity-${{ hashFiles('tmp/*') }}
           restore-keys: |
             ${{ runner.os }}-singularity-
+      
       - uses: eWaterCycle/setup-apptainer@v2
         if: matrix.test == 'pipeline'
         with:
