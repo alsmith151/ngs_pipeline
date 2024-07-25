@@ -3,17 +3,92 @@ name: Python package
 on: [push]
 
 jobs:
+  Set-Up:
+    outputs:
+      containers: ${{ steps.singularity-containers-artifact.outputs.artifact-id }}
+    if: github.event_name == 'pull_request' || github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Cache dependencies
+        id: cache-env
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.conda
+            ~/.cache/pip
+          key: ${{ runner.os }}-env-${{ hashFiles('**/testing.yml') }}
+          restore-keys: |
+            ${{ runner.os }}-env-
+      - name: Setup conda
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          environment-file: testing.yml
+          miniforge-variant: Mambaforge
+          miniforge-version: latest
+          use-mamba: true
+
+      - name: Install package
+        shell: pwsh
+        run: |
+          pip install .
+      
+      - name: Cache singularity
+        if: matrix.test == 'pipeline'
+        id: cache-singularity
+        uses: actions/cache@v3
+        with:
+          path: ~/.apptainer
+          key: ${{ runner.os }}-singularity-${{ hashFiles('tmp/*') }}
+          restore-keys: |
+            ${{ runner.os }}-singularity-
+      
+      - uses: eWaterCycle/setup-apptainer@v2
+        if: matrix.test == 'pipeline'
+        with:
+          apptainer-version: 1.1.2
+
+      - name: Add singularity hub remote
+        if: matrix.test == 'pipeline'
+        shell: pwsh
+        run: |
+          apptainer remote add --no-login SylabsCloud cloud.sylabs.io
+          apptainer remote use SylabsCloud
+      - name: Pull singularity images
+        if: matrix.test == 'pipeline' && steps.cache-singularity.outputs.cache-hit != 'true'
+        shell: bash
+        run: |
+          echo "Pulling singularity images from the remote repository..."
+          mkdir -p tmp
+          cd tmp
+          if [[ "${{ matrix.test }}" == "pipeline" ]]; then
+            apptainer pull --force library://asmith151/seqnado/seqnado_pipeline:latest
+          elif [[ "${{ matrix.assay }}" == "atac" || "${{ matrix.assay }}" == "chip" ]]; then
+            apptainer pull --force library://asmith151/seqnado/seqnado_extra:latest
+          elif [[ "${{ matrix.assay }}" == "rna-rx" ]]; then
+            apptainer pull --force library://asmith151/seqnado/seqnado_report:latest
+          fi
+      
+        # save the containers as artifacts for the next task
+
+      - uses: actions/upload-artifact@v4
+        id: singularity-containers-artifact
+        with:
+          path: tmp/
+          name: singularity-images
+
   Test:
+    needs: Set-Up
     if: github.event_name == 'pull_request' || github.event_name == 'push'
     runs-on: ubuntu-latest
     strategy:
       matrix:
         test: ["config", "design", "pipeline"]
         assay: ["atac", "chip-rx", "chip", "rna-rx", "rna", "snp"]
-
+    env:
+        containers: ${{needs.Set-UP.outputs.containers}}
     steps:
       - uses: actions/checkout@v3
-
       - name: Cache dependencies
         id: cache-env
         uses: actions/cache@v3
@@ -56,19 +131,7 @@ jobs:
         run: |
           apptainer remote add --no-login SylabsCloud cloud.sylabs.io
           apptainer remote use SylabsCloud
-      - name: Pull singularity images
-        if: matrix.test == 'pipeline' && steps.cache-singularity.outputs.cache-hit != 'true'
-        shell: bash
-        run: |
-          echo "Pulling singularity images from the remote repository..."
-          mkdir -p tmp
-          if [[ "${{ matrix.test }}" == "pipeline" ]]; then
-            apptainer pull --force library://asmith151/seqnado/seqnado_pipeline:latest
-          elif [[ "${{ matrix.assay }}" == "atac" || "${{ matrix.assay }}" == "chip" ]]; then
-            apptainer pull --force library://asmith151/seqnado/seqnado_extra:latest
-          elif [[ "${{ matrix.assay }}" == "rna-rx" ]]; then
-            apptainer pull --force library://asmith151/seqnado/seqnado_report:latest
-          fi
+
       - name: Test ${{ matrix.test }} ${{ matrix.assay }}
         shell: pwsh
         env:
