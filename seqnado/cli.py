@@ -13,7 +13,7 @@ PACKAGE_DIR = os.path.dirname(FILE)
 
 
 @click.command(context_settings=dict(ignore_unknown_options=True))
-@click.argument("method", type=click.Choice(["atac", "chip", "rna", "snp"]))
+@click.argument("method", type=click.Choice(["atac", "chip",'cat',"rna", "snp"]))
 @click.option("-r", "--rerun", is_flag=True, help="Re-run the config")
 @click.option(
     "-g",
@@ -44,7 +44,7 @@ def cli_config(method, help=False, genome="other", rerun=False):
 
 
 @click.command()
-@click.argument("method", type=click.Choice(["atac", "chip", "rna", "snp"]))
+@click.argument("method", type=click.Choice(["atac", "chip", "rna",'cat',"snp"]))
 @click.argument("files", nargs=-1)
 @click.option("-o", "--output", default="design.csv", help="Output file name")
 def cli_design(method, files, output="design.csv"):
@@ -95,7 +95,7 @@ def cli_design(method, files, output="design.csv"):
 @click.command(context_settings=dict(ignore_unknown_options=True))
 @click.argument(
     "method",
-    type=click.Choice(["atac", "chip", "rna", "snp"]),
+    type=click.Choice(["atac", "chip", 'cat', "rna", "snp"]),
 )
 @click.option("--version", help="Print version and exit", is_flag=True)
 @click.option(

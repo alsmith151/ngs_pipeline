@@ -14,7 +14,7 @@ import requests
 
 @pytest.fixture(
     scope="function",
-    params=["atac", "chip", "chip-rx", "rna", "rna-rx", "snp"],
+    params=["atac", "chip", "chip-rx", "rna", "rna-rx", "snp", "cat"],
     autouse=True,
 )
 def assay(request):
@@ -254,6 +254,10 @@ def user_inputs(
         "peak_calling_method": "lanceotron",
     }
 
+    defaults_cat = defaults_chip.copy()
+    defaults_cat['peak_calling_method'] = 'seacr'
+
+
     defaults_rna = {
         "remove_pcr_duplicates": "no",
         "spikein": "no",
@@ -301,6 +305,8 @@ def user_inputs(
             return {**defaults, **defaults_rna_rx, **hub}
         case "snp":
             return {**defaults, **defaults_snp, **hub}
+        case "cat":
+            return {**defaults, **defaults_cat, **hub}
 
 
 @pytest.fixture(scope="function")
@@ -343,6 +349,8 @@ def config_yaml_for_testing(config_yaml, assay):
     if assay == "chip":
         config["library_complexity"] = False
     elif assay == "chip-rx":
+        config["peak_calling_method"] = "seacr"
+    elif assay == "cat":
         config["peak_calling_method"] = "seacr"
     elif assay == "atac":
         config["pileup_method"] = ["deeptools", "homer"]

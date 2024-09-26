@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         test: ["config", "design", "pipeline"]
-        assay: ["atac", "chip-rx", "chip", "rna-rx", "rna", "snp"]
+        assay: ["atac", "chip-rx", "chip", "rna-rx", "rna", "snp", 'cat']
 
     steps:
       - uses: actions/checkout@v3

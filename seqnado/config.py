@@ -2,6 +2,7 @@ import os
 import datetime
 from jinja2 import Environment, FileSystemLoader
 import json
+from loguru import logger
 
 package_dir = os.path.dirname(os.path.abspath(__file__))
 template_dir = os.path.join(package_dir, "workflow/config")
@@ -16,7 +17,7 @@ def get_user_input(prompt, default=None, is_boolean=False, choices=None):
         if is_boolean:
             return user_input.lower() == "yes"
         if choices and user_input not in choices:
-            print(f"Invalid choice. Please choose from {', '.join(choices)}.")
+            logger.error(f"Invalid choice. Please choose from {', '.join(choices)}.")
             continue
         return user_input
 
@@ -164,16 +165,26 @@ def setup_configuration(assay, genome, template_data):
             template_data["make_heatmaps"] = "False"
 
     # Call peaks
-    if assay in ["chip", "atac"]:
+    if assay in ["chip", "atac", "cat"]:
         template_data["call_peaks"] = get_user_input(
             "Do you want to call peaks? (yes/no)", default="no", is_boolean=True
         )
         if template_data["call_peaks"]:
-            template_data["peak_calling_method"] = get_user_input(
-                "Peak caller:",
-                default="lanceotron",
-                choices=["lanceotron", "macs", "homer"],
-            )
+
+            if not assay == "cat":
+
+                template_data["peak_calling_method"] = get_user_input(
+                    "Peak caller:",
+                    default="lanceotron",
+                    choices=["lanceotron", "macs", "homer", 'seacr'],
+                )
+            
+            else:
+                template_data["peak_calling_method"] = get_user_input(
+                    "Peak caller:",
+                    default="seacr",
+                    choices=["lanceotron", "macs", "homer", 'seacr'],
+                )
 
     # RNA options
     template_data["rna_quantification"] = (
@@ -257,7 +268,7 @@ def setup_configuration(assay, genome, template_data):
 
     template_data["options"] = (
         TOOL_OPTIONS
-        if assay in ["chip", "atac"]
+        if assay in ["chip", "atac", 'cat']
         else (
             TOOL_OPTIONS_RNA
             if assay == "rna"
@@ -397,7 +408,7 @@ def create_config(assay, genome, rerun, debug=False):
         ) as file:
             file.write(template_deseq2.render(template_data))
 
-    print(
+    logger.info(
         f"Directory '{dir_name}' has been created with the 'config_{assay}.yml' file."
     )
 

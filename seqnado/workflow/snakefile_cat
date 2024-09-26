@@ -1,0 +1,107 @@
+from datetime import datetime
+import glob
+import os
+import shutil
+import sys
+
+import pandas as pd
+from snakemake.utils import min_version
+
+
+from seqnado.design import DesignIP, ChIPOutput, NormGroups
+from seqnado.helpers import format_config_dict, symlink_fastq_files, get_scale_method, remove_unwanted_run_files
+
+####################
+# Hardcoded config #
+####################
+
+ASSAY = "CaT"
+SCALE_RESOURCES = float(os.environ.get("SCALE_RESOURCES", "1"))
+configfile: "config_cat.yml"
+container: "library://asmith151/seqnado/seqnado_pipeline:latest"
+
+####################
+# Experiment config #
+####################
+
+# Load config
+format_config_dict(config)
+
+# Generate design
+if os.path.exists(config["design"]):
+    df = pd.read_csv(config["design"], sep=r"\s+|,|\t", engine="python").fillna("")
+    DESIGN = DesignIP.from_dataframe(df)
+else:
+    DESIGN = DesignIP.from_directory(".")
+
+# Attempt to symlink the fastq files
+assert len(DESIGN.fastq_paths) > 0, "No fastq files found in the working directory or no design file provided."
+symlink_fastq_files(DESIGN, output_dir="seqnado_output/fastqs")
+
+
+# Define global variables
+SAMPLE_NAMES = DESIGN.sample_names
+SAMPLE_NAMES_IP = DESIGN.sample_names_ip
+SAMPLE_NAMES_CONTROL = DESIGN.sample_names_control
+IP = DESIGN.ips_performed
+CONTROL = DESIGN.controls_performed
+
+# Define output files
+OUTPUT = ChIPOutput(
+    assay=ASSAY,
+    run_design=DESIGN,
+    sample_names=SAMPLE_NAMES,
+    ip_names=IP,
+    control_names=CONTROL,
+    scale_method=get_scale_method(config),
+    **config    
+)
+
+NORMALISATION_SCALING = NormGroups.from_design(DESIGN, subset_column="scale_group", include_controls=True)
+NORMALISATION_MERGING = NormGroups.from_design(DESIGN, subset_column="merge", include_controls=True)
+
+
+# Load required rules
+include: "rules/common.smk"
+include: "rules/align.smk"
+include: "rules/alignment_post_processing.smk"
+include: "rules/fastq_screen.smk"
+include: "rules/fastq_trim.smk"
+include: "rules/exogenous_norm.smk"
+include: "rules/peak_call_chip.smk"
+include: "rules/peak_call_grouped.smk"
+include: "rules/pileup_default.smk"
+include: "rules/pileup_norm.smk"
+include: "rules/pileup_grouped.smk"
+include: "rules/qc.smk"
+include: "rules/heatmap.smk"
+include: "rules/hub.smk"
+
+
+if config["spikein"]:
+    ruleorder: move_ref_bam > align_paired > align_single
+    ruleorder: deeptools_make_bigwigs_spikein > deeptools_make_bigwigs
+else:
+    ruleorder: align_paired > align_single > move_ref_bam
+
+# # Define wildcard constraints
+# wildcard_constraints:
+#     treatment= "|".join(IP),
+
+
+
+rule all:
+    input:
+        OUTPUT.files
+
+
+onsuccess:
+   remove_unwanted_run_files()
+
+onerror:
+    log_out = "seqnado_error.log"
+    shutil.copyfile(log, log_out)
+    print(
+        f"An error occurred. Please check the log file {log_out} for more information."
+    )
+    remove_unwanted_run_files()
