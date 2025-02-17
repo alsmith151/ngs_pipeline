@@ -1,0 +1,1046 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../installation/">
+      
+      
+        <link rel="next" href="../cluster_config/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
+    
+    
+      
+        <title>Pipeline - Seqnado Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pipeline" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Seqnado Documentation" class="md-header__button md-logo" aria-label="Seqnado Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Seqnado Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Pipeline
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/alsmith151/SeqNado" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Seqnado Documentation" class="md-nav__button md-logo" aria-label="Seqnado Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Seqnado Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/alsmith151/SeqNado" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Pipeline
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Pipeline
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generate-the-working-directory-and-configuration-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generate the working directory and configuration file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-the-tool-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check the tool options
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edit-the-configuration-file-if-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      Edit the configuration file (if required)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#organise-your-fastq-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Organise your fastq files
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Organise your fastq files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#infer-sample-names-from-fastq-file-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      Infer sample names from fastq file names
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#design-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Design file
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Design file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#merging-replicates-or-samples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Merging replicates or samples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atacrna-seq-design-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      ATAC|RNA-seq design file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chip-seq-design-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      ChIP-seq design file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rna-seq-design-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      RNA-seq design file
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running the pipeline
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running the pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ensure-files-are-in-the-correct-location" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ensure files are in the correct location
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-you-are-in-the-correct-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check you are in the correct directory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ensure-that-the-pipeline-will-not-stop-when-you-log-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ensure that the pipeline will not stop when you log out
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-you-have-activated-the-conda-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check you have activated the conda environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-the-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run the pipeline
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipeline Errors
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cluster_config/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cluster Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FAQ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generate-the-working-directory-and-configuration-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generate the working directory and configuration file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-the-tool-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check the tool options
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edit-the-configuration-file-if-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      Edit the configuration file (if required)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#organise-your-fastq-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Organise your fastq files
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Organise your fastq files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#infer-sample-names-from-fastq-file-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      Infer sample names from fastq file names
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#design-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Design file
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Design file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#merging-replicates-or-samples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Merging replicates or samples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atacrna-seq-design-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      ATAC|RNA-seq design file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chip-seq-design-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      ChIP-seq design file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rna-seq-design-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      RNA-seq design file
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running the pipeline
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running the pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ensure-files-are-in-the-correct-location" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ensure files are in the correct location
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-you-are-in-the-correct-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check you are in the correct directory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ensure-that-the-pipeline-will-not-stop-when-you-log-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ensure that the pipeline will not stop when you log out
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-you-have-activated-the-conda-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check you have activated the conda environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-the-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run the pipeline
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipeline Errors
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="pipeline">Pipeline<a class="headerlink" href="#pipeline" title="Permanent link">&para;</a></h1>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<p>The pipeline is configured using a YAML file: e.g. <code>config_atac.yml</code>, <code>config_chip.yml</code>. We highly recommend using the <code>seqnado-config</code> command to generate the configuration file as this will prompt the user for the required information and ensure that the configuration file is valid. The configuration file can be edited manually if required e.g. using <code>nano</code> or the VS Code text editor.</p>
+<h3 id="generate-the-working-directory-and-configuration-file">Generate the working directory and configuration file<a class="headerlink" href="#generate-the-working-directory-and-configuration-file" title="Permanent link">&para;</a></h3>
+<p>The following command will generate the working directory and configuration file for the ATAC-seq pipeline:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1">seqnado-config<span class="w"> </span>chip
+</span><span id="__span-0-2">
+</span><span id="__span-0-3"><span class="c1"># options </span>
+</span><span id="__span-0-4">-r,<span class="w"> </span>--rerun<span class="w"> </span><span class="c1"># Re-runs the config in existing seqnado directory</span>
+</span></code></pre></div>
+<p>You should get something like this:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1">$<span class="w"> </span>seqnado-config<span class="w"> </span>chip
+</span><span id="__span-1-2"><span class="w">  </span>What<span class="w"> </span>is<span class="w"> </span>your<span class="w"> </span>project<span class="w"> </span>name?<span class="w"> </span><span class="o">[</span>cchahrou_project<span class="o">]</span>:<span class="w"> </span>cchahrou_project
+</span><span id="__span-1-3"><span class="w">  </span>What<span class="w"> </span>is<span class="w"> </span>the<span class="w"> </span>genome?<span class="w"> </span><span class="o">[</span>hg38<span class="o">]</span>:<span class="w"> </span>hg38
+</span><span id="__span-1-4"><span class="w">  </span>Perform<span class="w"> </span>fastqscreen?<span class="w"> </span><span class="o">(</span>yes/no<span class="o">)</span><span class="w"> </span><span class="o">[</span>no<span class="o">]</span>:<span class="w"> </span>yes
+</span><span id="__span-1-5"><span class="w">  </span>Path<span class="w"> </span>to<span class="w"> </span>fastqscreen<span class="w"> </span>config:<span class="w"> </span><span class="o">[</span>/PATH/TO/fastq_screen.conf<span class="o">]</span>:<span class="w"> </span>/PATH/TO/fastq_screen.conf
+</span><span id="__span-1-6"><span class="w">  </span>Do<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>remove<span class="w"> </span>blacklist<span class="w"> </span>regions?<span class="w"> </span><span class="o">(</span>yes/no<span class="o">)</span><span class="w"> </span><span class="o">[</span>yes<span class="o">]</span>:<span class="w"> </span>yes
+</span><span id="__span-1-7"><span class="w">  </span>Remove<span class="w"> </span>PCR<span class="w"> </span>duplicates?<span class="w"> </span><span class="o">(</span>yes/no<span class="o">)</span><span class="w"> </span><span class="o">[</span>yes<span class="o">]</span>:<span class="w"> </span>yes
+</span><span id="__span-1-8"><span class="w">  </span>Remove<span class="w"> </span>PCR<span class="w"> </span>duplicates<span class="w"> </span>method:<span class="w"> </span><span class="o">[</span>picard/samtools<span class="o">]</span>:<span class="w"> </span>picard
+</span><span id="__span-1-9"><span class="w">  </span>Calculate<span class="w"> </span>library<span class="w"> </span>complexity?<span class="w"> </span><span class="o">(</span>yes/no<span class="o">)</span><span class="w"> </span><span class="o">[</span>no<span class="o">]</span>:<span class="w"> </span>yes
+</span><span id="__span-1-10"><span class="w">  </span>Do<span class="w"> </span>you<span class="w"> </span>have<span class="w"> </span>spikein?<span class="w"> </span><span class="o">(</span>yes/no<span class="o">)</span><span class="w"> </span><span class="o">[</span>no<span class="o">]</span>:<span class="w"> </span>yes
+</span><span id="__span-1-11"><span class="w">  </span>Normalisation<span class="w"> </span>method:<span class="w"> </span><span class="o">[</span>orlando/with_input<span class="o">]</span>:<span class="w"> </span>orlando
+</span><span id="__span-1-12"><span class="w">  </span>Reference<span class="w"> </span>genome:<span class="w"> </span><span class="o">[</span>hg38<span class="o">]</span>:<span class="w"> </span>hg38
+</span><span id="__span-1-13"><span class="w">  </span>Spikein<span class="w"> </span>genome:<span class="w"> </span><span class="o">[</span>dm6<span class="o">]</span>:<span class="w"> </span>dm6
+</span><span id="__span-1-14"><span class="w">  </span>Do<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>make<span class="w"> </span>bigwigs?<span class="w"> </span><span class="o">(</span>yes/no<span class="o">)</span><span class="w"> </span><span class="o">[</span>no<span class="o">]</span>:<span class="w"> </span>yes
+</span><span id="__span-1-15"><span class="w">  </span>Pileup<span class="w"> </span>method:<span class="w"> </span><span class="o">[</span>deeptools/homer<span class="o">]</span>:<span class="w"> </span>deeptools
+</span><span id="__span-1-16"><span class="w">  </span>Do<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>make<span class="w"> </span>heatmaps?<span class="w"> </span><span class="o">(</span>yes/no<span class="o">)</span><span class="w"> </span><span class="o">[</span>no<span class="o">]</span>:<span class="w"> </span>yes
+</span><span id="__span-1-17"><span class="w">  </span>Do<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>call<span class="w"> </span>peaks?<span class="w"> </span><span class="o">(</span>yes/no<span class="o">)</span><span class="w"> </span><span class="o">[</span>no<span class="o">]</span>:<span class="w"> </span>yes
+</span><span id="__span-1-18"><span class="w">  </span>Generate<span class="w"> </span>consensus<span class="w"> </span>counts<span class="w"> </span>from<span class="w"> </span>Design<span class="w"> </span>merge<span class="w"> </span>column?<span class="w"> </span><span class="o">(</span>yes/no<span class="o">)</span><span class="w"> </span><span class="o">[</span>no<span class="o">]</span>:<span class="w"> </span>yes
+</span><span id="__span-1-19"><span class="w">  </span>Peak<span class="w"> </span>caller:<span class="w"> </span><span class="o">[</span>lanceotron/macs/homer/seacr<span class="o">]</span>:<span class="w"> </span>lanceotron
+</span><span id="__span-1-20"><span class="w">  </span>Do<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>make<span class="w"> </span>a<span class="w"> </span>UCSC<span class="w"> </span>hub?<span class="w"> </span><span class="o">(</span>yes/no<span class="o">)</span><span class="w"> </span><span class="o">[</span>no<span class="o">]</span>:<span class="w"> </span>yes
+</span><span id="__span-1-21"><span class="w">  </span>UCSC<span class="w"> </span>hub<span class="w"> </span>directory:<span class="w"> </span><span class="o">[</span>seqnado_output/hub/<span class="o">]</span>:<span class="w"> </span>seqnado_output/hub/
+</span><span id="__span-1-22"><span class="w">  </span>What<span class="w"> </span>is<span class="w"> </span>your<span class="w"> </span>email<span class="w"> </span>address?<span class="w"> </span><span class="o">[</span>email@example.com<span class="o">]</span>:<span class="w"> </span>email<span class="w"> </span><span class="k">for</span><span class="w"> </span>UCSC
+</span><span id="__span-1-23"><span class="w">  </span>Color<span class="w"> </span>by<span class="w"> </span><span class="o">(</span><span class="k">for</span><span class="w"> </span>UCSC<span class="w"> </span>hub<span class="o">)</span>:<span class="w"> </span><span class="o">[</span>samplename<span class="o">]</span>:<span class="w"> </span>samplename
+</span><span id="__span-1-24"><span class="w">  </span>Generate<span class="w"> </span>GEO<span class="w"> </span>submission<span class="w"> </span>files<span class="w"> </span><span class="o">(</span>MD5Sums,<span class="w"> </span><span class="nb">read</span><span class="w"> </span>count<span class="w"> </span>summaries...<span class="o">)</span>?<span class="w"> </span><span class="o">(</span>yes/no<span class="o">)</span><span class="w"> </span><span class="o">[</span>no<span class="o">]</span>:<span class="w"> </span>yes
+</span><span id="__span-1-25"><span class="w">  </span>Perform<span class="w"> </span>plotting?<span class="w"> </span><span class="o">(</span>yes/no<span class="o">)</span><span class="w"> </span><span class="o">[</span>no<span class="o">]</span>:<span class="w"> </span>yes
+</span><span id="__span-1-26"><span class="w">  </span>Path<span class="w"> </span>to<span class="w"> </span>bed<span class="w"> </span>file<span class="w"> </span>with<span class="w"> </span>coordinates<span class="w"> </span><span class="k">for</span><span class="w"> </span>plotting<span class="w"> </span><span class="o">[</span>None<span class="o">]</span>:<span class="w"> </span>
+</span><span id="__span-1-27"><span class="w">  </span>Path<span class="w"> </span>to<span class="w"> </span>bed<span class="w"> </span>file<span class="w"> </span>with<span class="w"> </span>genes.<span class="w"> </span><span class="o">[</span>None<span class="o">]</span>:<span class="w"> </span>
+</span><span id="__span-1-28"><span class="w">  </span>Directory<span class="w"> </span><span class="s1">&#39;2025-02-11_chip_cchahrou_project/&#39;</span><span class="w"> </span>has<span class="w"> </span>been<span class="w"> </span>created<span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span><span class="s1">&#39;config_chip.yml&#39;</span><span class="w"> </span>file.
+</span></code></pre></div>
+<p>This will generate the following files:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1">$<span class="w"> </span>tree<span class="w"> </span><span class="m">2025</span>-02-11_chip_cchahrou_project/
+</span><span id="__span-2-2">
+</span><span id="__span-2-3"><span class="m">2025</span>-02-11_chip_cchahrou_project/
+</span><span id="__span-2-4">├──<span class="w"> </span>config_chip.yml
+</span><span id="__span-2-5">└──<span class="w"> </span>fastq/
+</span><span id="__span-2-6">
+</span><span id="__span-2-7"><span class="m">1</span><span class="w"> </span>directory,<span class="w"> </span><span class="m">1</span><span class="w"> </span>file
+</span></code></pre></div>
+<h3 id="check-the-tool-options">Check the tool options<a class="headerlink" href="#check-the-tool-options" title="Permanent link">&para;</a></h3>
+<p>In the newly created config yaml file, check the tool options <strong>especially for rna quantification</strong>!</p>
+<h3 id="edit-the-configuration-file-if-required">Edit the configuration file (if required)<a class="headerlink" href="#edit-the-configuration-file-if-required" title="Permanent link">&para;</a></h3>
+<p>The configuration file can be edited manually if required e.g. using <code>nano</code> or the VS Code text editor. Use this if you have made an error in the configuration file or if you want to change it for any other reason.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you edit the configuration file manually, you must ensure that it is valid YAML syntax (ensure that you do not delete any colons, commas, or change the indentation). </p>
+</div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1">nano<span class="w"> </span>config_chip.yml<span class="w"> </span><span class="c1"># Note to exit nano press ctrl+x and then &quot;y&quot; followed by &quot;enter&quot; to save</span>
+</span></code></pre></div>
+<h2 id="organise-your-fastq-files">Organise your fastq files<a class="headerlink" href="#organise-your-fastq-files" title="Permanent link">&para;</a></h2>
+<p>use symlinks from your raw_data:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><span class="nb">cd</span><span class="w"> </span><span class="m">2025</span>-02-11_chip_cchahrou_project/fastq
+</span><span id="__span-4-2">
+</span><span id="__span-4-3">ln<span class="w"> </span>-s<span class="w"> </span>/path/to/raw_data/SampleName_S1_L001_R1_001.fastq.gz<span class="w"> </span>samplename1_Antibody_R1.fastq.gz
+</span><span id="__span-4-4">ln<span class="w"> </span>-s<span class="w"> </span>/path/to/raw_data/SampleName_S1_L001_R2_001.fastq.gz<span class="w"> </span>samplename1_Antibody_R2.fastq.gz
+</span></code></pre></div>
+<h3 id="infer-sample-names-from-fastq-file-names">Infer sample names from fastq file names<a class="headerlink" href="#infer-sample-names-from-fastq-file-names" title="Permanent link">&para;</a></h3>
+<p>If the fastq files are named in a way that seqnado can infer the sample names, then a design file will be generated automatically:</p>
+<p>ChIP-seq</p>
+<ul>
+<li>samplename1_Antibody_R1.fastq.gz</li>
+<li>samplename1_Antibody_R2.fastq.gz</li>
+<li>samplename1_Input_1.fastq.gz</li>
+<li>samplename1_Input_2.fastq.gz</li>
+</ul>
+<p>For ATAC-seq:</p>
+<ul>
+<li>sample-name-1_R1.fastq.gz</li>
+<li>sample-name-1_R2.fastq.gz</li>
+<li>sample-name-1_1.fastq.gz</li>
+<li>sample-name-1_2.fastq.gz</li>
+</ul>
+<p>For RNA-seq:</p>
+<ul>
+<li>sample-name-1_R1.fastq.gz</li>
+<li>sample-name-1_R2.fastq.gz</li>
+<li>sample-name-1_1.fastq.gz</li>
+<li>sample-name-1_2.fastq.gz</li>
+</ul>
+<h2 id="design-file">Design file<a class="headerlink" href="#design-file" title="Permanent link">&para;</a></h2>
+<p>If the fastq files are not named in a way that seqnado can infer the sample names, then a design file can be generated using the <code>seqnado-design</code> command. You'll need to enter the working directory and generate a design file:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><span class="nb">cd</span><span class="w"> </span>..
+</span><span id="__span-5-2">seqnado-design<span class="w"> </span>chip<span class="w"> </span>fastq/*<span class="w"> </span>
+</span><span id="__span-5-3"><span class="c1"># Note that you can use tab completion to complete the path to the fastq files</span>
+</span></code></pre></div>
+<p>This will generate a design file called <code>design.csv</code> in the working directory.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You need to specify the fastq files in the command line to use for the design generation e.g. in the current working directory:<br />
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1">seqnado-design<span class="w"> </span>chip<span class="w"> </span>*.fastq.gz
+</span></code></pre></div></p>
+</div>
+<h3 id="merging-replicates-or-samples">Merging replicates or samples<a class="headerlink" href="#merging-replicates-or-samples" title="Permanent link">&para;</a></h3>
+<p>To merge samples for counting or bigwig/peak generation add a merge column to the design file</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1">sample_name,r1,r2,scale_group,merge
+</span><span id="__span-7-2">atac,/ceph/project/milne_group/cchahrou/software/SeqNado/2025-02-11_chip_cchahrou_project/atac_1.fastq.gz,/ceph/project/milne_group/cchahrou/software/SeqNado/2025-02-11_chip_cchahrou_project/atac_2.fastq.gz,all,merge_group
+</span><span id="__span-7-3">atac2,/ceph/project/milne_group/cchahrou/software/SeqNado/2025-02-11_chip_cchahrou_project/atac_1.fastq.gz,/ceph/project/milne_group/cchahrou/software/SeqNado/2025-02-11_chip_cchahrou_project/atac_2.fastq.gz,all,merge_group
+</span></code></pre></div>
+<p>This will merge both to make a <code>merge_group</code> bigwig and peak file</p>
+<p>Consensus counts can be made from the merged peaks when consensus_counts is True in config yaml for ATAC or ChIP</p>
+<h3 id="atacrna-seq-design-file">ATAC|RNA-seq design file<a class="headerlink" href="#atacrna-seq-design-file" title="Permanent link">&para;</a></h3>
+<p>An ATAC-seq or RNA-seq design file should look something like this:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1">sample,r1,r2
+</span><span id="__span-8-2">rna,/path/to/fastq/rna_2.fastq.gz,/path/to/fastq/rna_1.fastq.gz
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The design file is a CSV file with the following columns:
+  * <code>sample</code> - The sample name. Altering this will change the name of the output files so can be useful for renaming samples.
+  * <code>r1</code> - The path to the read 1 fastq file
+  * <code>r2</code> - The path to the read 2 fastq file</p>
+</div>
+<h3 id="chip-seq-design-file">ChIP-seq design file<a class="headerlink" href="#chip-seq-design-file" title="Permanent link">&para;</a></h3>
+<p>A ChIP assay design file should look something like this:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1">sample_name,ip,control,ip_r1,ip_r2,control_r1,control_r2,scale_group
+</span><span id="__span-9-2">chip-rx,MLL,input,fastq/chip-rx_MLL_1.fastq.gz,fastq/chip-rx_MLL_2.fastq.gz,fastq/chip-rx_input_1.fastq.gz,fastq/chip-rx_input_2.fastq.gz,all
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The design file is a CSV file with the following columns:
+  * <code>sample</code> - The sample name. Altering this will change the name of the output files so can be useful for renaming samples.
+  * <code>ip_r1</code> - The path to the IP read 1 fastq file
+  * <code>ip_r2</code> - The path to the IP read 2 fastq file
+  * <code>control_r1</code> - The path to the control read 1 fastq file
+  * <code>control_r2</code> - The path to the control read 2 fastq file
+  * <code>ip</code> - The name of the IP sample
+  * <code>control</code> - The name of the control sample</p>
+</div>
+<h3 id="rna-seq-design-file">RNA-seq design file<a class="headerlink" href="#rna-seq-design-file" title="Permanent link">&para;</a></h3>
+<p>An RNA-seq design file should look something like this:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1">sample,r1,r2
+</span><span id="__span-10-2">rna,/path/to/fastq/rna_2.fastq.gz,/path/to/fastq/rna_1.fastq.gz
+</span></code></pre></div>
+<p>If you want to run DeSeq2, then you will need to add an additional column to the design file to indicate which samples are in the control group:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1">sample,r1,r2,deseq2
+</span><span id="__span-11-2">rna1,/path/to/fastq/rna1_2.fastq.gz,/path/to/fastq/rna1_1.fastq.gz,control
+</span><span id="__span-11-3">rna2,/path/to/fastq/rna2_2.fastq.gz,/path/to/fastq/rna2_1.fastq.gz,control
+</span><span id="__span-11-4">rna3,/path/to/fastq/rna3_2.fastq.gz,/path/to/fastq/rna3_1.fastq.gz,control
+</span><span id="__span-11-5">rna4,/path/to/fastq/rna4_2.fastq.gz,/path/to/fastq/rna4_1.fastq.gz,treated
+</span><span id="__span-11-6">rna5,/path/to/fastq/rna5_2.fastq.gz,/path/to/fastq/rna5_1.fastq.gz,treated
+</span><span id="__span-11-7">rna6,/path/to/fastq/rna6_2.fastq.gz,/path/to/fastq/rna6_1.fastq.gz,treated
+</span></code></pre></div>
+<h2 id="running-the-pipeline">Running the pipeline<a class="headerlink" href="#running-the-pipeline" title="Permanent link">&para;</a></h2>
+<h3 id="ensure-files-are-in-the-correct-location">Ensure files are in the correct location<a class="headerlink" href="#ensure-files-are-in-the-correct-location" title="Permanent link">&para;</a></h3>
+<p>Before running the pipeline, ensure that the fastq files, and design are in the correct location:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><span class="c1"># Fastq files</span>
+</span><span id="__span-12-2">ln<span class="w"> </span>-s<span class="w"> </span>/path/to/fastq_files/<span class="w"> </span>/path/to/working-directory/made-by-seqnado-config/
+</span><span id="__span-12-3">
+</span><span id="__span-12-4"><span class="c1"># Design</span>
+</span><span id="__span-12-5">mv<span class="w"> </span>/path/to/design.csv<span class="w"> </span>/path/to/working-directory/made-by-seqnado-config/
+</span></code></pre></div>
+<h3 id="check-you-are-in-the-correct-directory">Check you are in the correct directory<a class="headerlink" href="#check-you-are-in-the-correct-directory" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1">$<span class="w"> </span>ls<span class="w"> </span>-l
+</span><span id="__span-13-2">-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>asmith<span class="w"> </span>asmithgrp<span class="w">    </span><span class="m">1845</span><span class="w"> </span>Jan<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="m">10</span>:50<span class="w"> </span>config_rna.yml
+</span><span id="__span-13-3">-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>asmith<span class="w"> </span>asmithgrp<span class="w">   </span><span class="m">14784</span><span class="w"> </span>Jan<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="m">10</span>:50<span class="w"> </span>deseq2_test.qmd
+</span><span id="__span-13-4">-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>asmith<span class="w"> </span>asmithgrp<span class="w">     </span><span class="m">155</span><span class="w"> </span>Jan<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="m">14</span>:40<span class="w"> </span>design.csv
+</span><span id="__span-13-5">-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>asmith<span class="w"> </span>asmithgrp<span class="w"> </span><span class="m">3813176</span><span class="w"> </span>Jan<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="m">10</span>:50<span class="w"> </span>rna_1.fastq.gz
+</span><span id="__span-13-6">-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>asmith<span class="w"> </span>asmithgrp<span class="w"> </span><span class="m">3836966</span><span class="w"> </span>Jan<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="m">10</span>:50<span class="w"> </span>rna_2.fastq.gz
+</span></code></pre></div>
+<h3 id="ensure-that-the-pipeline-will-not-stop-when-you-log-out">Ensure that the pipeline will not stop when you log out<a class="headerlink" href="#ensure-that-the-pipeline-will-not-stop-when-you-log-out" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1">screen<span class="w"> </span>-S<span class="w"> </span>NAME_OF_SESSION
+</span><span id="__span-14-2">
+</span><span id="__span-14-3"><span class="c1"># to exit screen session</span>
+</span><span id="__span-14-4"><span class="w">  </span>ctrl+a<span class="w"> </span>d<span class="w"> </span>
+</span><span id="__span-14-5">
+</span><span id="__span-14-6"><span class="c1"># or </span>
+</span><span id="__span-14-7">
+</span><span id="__span-14-8">tmux<span class="w"> </span>new<span class="w"> </span>-s<span class="w"> </span>NAME_OF_SESSION
+</span><span id="__span-14-9">
+</span><span id="__span-14-10"><span class="c1"># to detach from tmux session</span>
+</span><span id="__span-14-11"><span class="w">  </span>ctrl+b<span class="w"> </span>d
+</span></code></pre></div>
+<h3 id="check-you-have-activated-the-conda-environment">Check you have activated the conda environment<a class="headerlink" href="#check-you-have-activated-the-conda-environment" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1">conda<span class="w"> </span>activate<span class="w"> </span>seqnado
+</span></code></pre></div>
+<h3 id="run-the-pipeline">Run the pipeline<a class="headerlink" href="#run-the-pipeline" title="Permanent link">&para;</a></h3>
+<p>The pipeline can be run using the following command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1">seqnado<span class="w"> </span><span class="o">[</span>atac<span class="p">|</span>chip<span class="p">|</span>rna<span class="p">|</span>snp<span class="o">]</span><span class="w"> </span>-c<span class="w"> </span>&lt;number<span class="w"> </span>of<span class="w"> </span>cores&gt;<span class="w"> </span>--preset<span class="w"> </span><span class="o">[</span>ss<span class="p">|</span>ls<span class="o">]</span><span class="w"> </span>
+</span><span id="__span-16-2"><span class="c1"># additional options</span>
+</span><span id="__span-16-3">--queue/-q<span class="w"> </span><span class="o">[</span>short<span class="p">|</span>long<span class="o">]</span><span class="w"> </span>--scale-resource/-s<span class="w"> </span>&lt;factor<span class="w"> </span>to<span class="w"> </span>multiply<span class="w"> </span>resources&gt;<span class="w"> </span>
+</span></code></pre></div>
+<p>An actual example would be:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1">seqnado<span class="w"> </span>rna<span class="w"> </span>-c<span class="w"> </span><span class="m">8</span><span class="w"> </span>--preset<span class="w"> </span>ss<span class="w"> </span>-q<span class="w"> </span>short<span class="w"> </span>
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li>To visualise which tasks will be performed by the pipeline before running.
+<code>seqnado atac -c 1 --preset ss --dag | dot -Tpng &gt; dag.png</code></li>
+</ul>
+</div>
+<h2 id="pipeline-errors">Pipeline Errors<a class="headerlink" href="#pipeline-errors" title="Permanent link">&para;</a></h2>
+<p>Check the log file for errors:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><span class="c1"># Look at all of the log files</span>
+</span><span id="__span-18-2">cat<span class="w"> </span>seqnado_error.log
+</span><span id="__span-18-3">
+</span><span id="__span-18-4"><span class="c1"># Look for errors in the log files</span>
+</span><span id="__span-18-5">cat<span class="w"> </span>seqnado_error.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>exception<span class="w"> </span>-A<span class="w"> </span><span class="m">10</span><span class="w"> </span>-B<span class="w"> </span><span class="m">10</span>
+</span></code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "header.autohide"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+    
+  </body>
+</html>
